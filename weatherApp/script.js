@@ -23,12 +23,7 @@ const weatherData = {
 
         // console.log(data.currentConditions)
     }
-}
-
-
-
-
-
+};
 
 userLocationForm.addEventListener(`submit`, async(e) => {
     e.preventDefault();
@@ -43,6 +38,29 @@ userLocationForm.addEventListener(`submit`, async(e) => {
 
         const conditionDescription = document.querySelector(`#conditionDescription`);
         conditionDescription.textContent = `${locationWeather.description}`;
+
+        const currentWeather = document.querySelector(`#currentWeather`);
+
+        const tempDisplay = document.createElement(`p`);
+        tempDisplay.textContent = `Temperature: ${locationWeather.temp}°F`;
+        currentWeather.appendChild(tempDisplay);
+
+        const feelsLikeDisplay = document.createElement(`p`);
+        feelsLikeDisplay.textContent = `Feels Like: ${locationWeather.feelsLike}°F`;
+        currentWeather.appendChild(feelsLikeDisplay);
+
+        const conditionDisplay = document.createElement(`p`);
+        conditionDisplay.textContent = `Condition: ${locationWeather.conditions}`;
+        currentWeather.appendChild(conditionDisplay);
+
+        const humidityDisplay = document.createElement(`p`);
+        humidityDisplay.textContent = `Humidity: ${locationWeather.humidity}%`;
+        currentWeather.appendChild(humidityDisplay);
+        
+        const windSpeedDisplay = document.createElement(`p`);
+        windSpeedDisplay.textContent = `Wind Speed: ${locationWeather.windSpeed} Kmph`;
+        currentWeather.appendChild(windSpeedDisplay);
+
     } catch {
         const LocationName = document.querySelector(`#locationName`);
         LocationName.textContent = "Location doesn't exist";
