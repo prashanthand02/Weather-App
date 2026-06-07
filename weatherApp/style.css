@@ -1,0 +1,57 @@
+body {
+    margin: 0 30%;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(114, 114, 252);
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+}
+
+#locationForm {
+    background-color: rgb(183, 183, 255);
+    height: 60px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: -10px;
+    border: none;
+    border-radius: 12px;
+}
+
+#locationForm > input {
+    width: 480px;
+    height: 20px;
+    border: none;
+    border-radius: 4px;  
+    margin: 0 auto 0 10px;
+}
+
+#locationForm > button {
+    margin-right: 10px;
+    height: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(114, 114, 252);
+    color: white;
+    text-align: center;
+}
+
+#locationForm > button:active {
+    background-color: #b5b5ff;
+    color: black;
+}
+
+.currentWeatherDisplay {
+    background-color: rgb(183, 183, 255);
+    width: 600px;
+    height: 300px;
+    padding: 5px 5px 5px 5px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 12px;
+    position: relative;
+    left: -10px;
+}

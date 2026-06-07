@@ -2,7 +2,7 @@ const userLocationForm = document.querySelector(`#locationForm`);
 
 const weatherData = {
     async getWeather(location) {
-        const data = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=AYC33FCKES87HVPKFNFQYF69V&contentType=json`);
+        const data = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=AYC33FCKES87HVPKFNFQYF69V&contentType=json`);
         const locationData = await data.json();
         return locationData;
     },
@@ -14,7 +14,7 @@ const weatherData = {
             description: data.description,
             conditions: data.currentConditions.conditions,
             feelsLike: data.currentConditions.feelslike,
-            humidition: data.currentConditions.humidity,
+            humidity: data.currentConditions.humidity,
             temp: data.currentConditions.temp,
             windSpeed: data.currentConditions.windspeed
         }
@@ -27,6 +27,11 @@ const weatherData = {
 
 userLocationForm.addEventListener(`submit`, async(e) => {
     e.preventDefault();
+    const currentWeather = document.querySelector(`#currentWeather`);
+    currentWeather.innerHTML = ``;
+    const container = document.querySelector(`#container`);
+    container.className = `currentWeatherDisplay`;
+
     try {
         const data = new FormData(e.target);
         const location = data.get(`userLocation`);
@@ -39,14 +44,12 @@ userLocationForm.addEventListener(`submit`, async(e) => {
         const conditionDescription = document.querySelector(`#conditionDescription`);
         conditionDescription.textContent = `${locationWeather.description}`;
 
-        const currentWeather = document.querySelector(`#currentWeather`);
-
         const tempDisplay = document.createElement(`p`);
-        tempDisplay.textContent = `Temperature: ${locationWeather.temp}°F`;
+        tempDisplay.textContent = `Temperature: ${locationWeather.temp}°C`;
         currentWeather.appendChild(tempDisplay);
 
         const feelsLikeDisplay = document.createElement(`p`);
-        feelsLikeDisplay.textContent = `Feels Like: ${locationWeather.feelsLike}°F`;
+        feelsLikeDisplay.textContent = `Feels Like: ${locationWeather.feelsLike}°C`;
         currentWeather.appendChild(feelsLikeDisplay);
 
         const conditionDisplay = document.createElement(`p`);
@@ -60,6 +63,8 @@ userLocationForm.addEventListener(`submit`, async(e) => {
         const windSpeedDisplay = document.createElement(`p`);
         windSpeedDisplay.textContent = `Wind Speed: ${locationWeather.windSpeed} Kmph`;
         currentWeather.appendChild(windSpeedDisplay);
+
+        console.log(locationWeather)
 
     } catch {
         const LocationName = document.querySelector(`#locationName`);

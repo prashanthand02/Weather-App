@@ -10,12 +10,13 @@
 <body>
     <h1>Weather App</h1>
     <form id="locationForm">
-        <label for="location">Location:</label>
-        <input type="text" name="userLocation" id="userLocation" required>
-        <button type="submit">Get Location</button>
+        <input type="text" name="userLocation" id="userLocation" required placeholder="City Name">
+        <button type="submit">Get forecast</button>
     </form>
-    <h2 id="locationName"></h2>
-    <p id="conditionDescription"></p>
-    <div id="currentWeather"></div>
+    <div id="container">
+        <h2 id="locationName"></h2>
+        <p id="conditionDescription"></p>
+        <div id="currentWeather"></div>
+    </div>
 </body>
 </html>
