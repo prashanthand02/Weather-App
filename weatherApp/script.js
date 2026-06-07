@@ -11,6 +11,7 @@ const weatherData = {
         const data = await this.getWeather(location);
 
         locationData = {
+            description: data.description,
             conditions: data.currentConditions.conditions,
             feelsLike: data.currentConditions.feelslike,
             humidition: data.currentConditions.humidity,
@@ -31,12 +32,19 @@ const weatherData = {
 
 userLocationForm.addEventListener(`submit`, async(e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    const location = data.get(`userLocation`);
+    try {
+        const data = new FormData(e.target);
+        const location = data.get(`userLocation`);
+        
+        const locationWeather = await weatherData.data(location);
 
-    const LocationName = document.querySelector(`#locationName`);
-    LocationName.textContent = location;
+        const LocationName = document.querySelector(`#locationName`);
+        LocationName.textContent = location;
 
-//    const locationWeather = await weatherData.data(location);
-//    console.log(locationWeather)
+        const conditionDescription = document.querySelector(`#conditionDescription`);
+        conditionDescription.textContent = `${locationWeather.description}`;
+    } catch {
+        const LocationName = document.querySelector(`#locationName`);
+        LocationName.textContent = "Location doesn't exist";
+    }
 })
